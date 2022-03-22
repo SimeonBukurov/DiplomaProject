@@ -4,6 +4,6 @@ namespace BlogBETA.Models
 {
     public class User : IdentityUser
     {
-        public virtual List<Post>? Posts { get; set; }       
+        public virtual ICollection<Post>? Posts { get; set; }   
     }
 }

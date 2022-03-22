@@ -2,10 +2,10 @@
 {
     public class Blog
     {
-        int Id { get; set; }
-        int OwnerId { get; set; }
-        string? Discription { get; set; }
-        public virtual List<Post>? Posts { get; set; }
+        public int? Id { get; set; }
+        public int? OwnerId { get; set; }
+        public string? Discription { get; set; }
+        public virtual ICollection<Post>? Posts { get; set; }
 
     }
 }
