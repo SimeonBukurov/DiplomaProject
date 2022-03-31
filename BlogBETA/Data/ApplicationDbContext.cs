@@ -6,8 +6,8 @@ namespace BlogBETA.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public DbSet<Post> Posts { get; set; }
-        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Post>? Posts { get; set; }
+        public DbSet<Blog>? Blogs { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
