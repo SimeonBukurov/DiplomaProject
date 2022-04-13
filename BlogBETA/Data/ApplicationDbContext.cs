@@ -16,18 +16,23 @@ namespace BlogBETA.Data
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseLazyLoadingProxies();
+            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=BlogDataBase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Blog>()
                 .HasMany(b => b.Posts)
-                .WithOne(p => p.Blog)
-                .HasForeignKey(b => b.BlogId);
+                .WithOne(p => p.Owner)
+                .HasForeignKey(b => b.OwnerId);
             modelBuilder.Entity<Post>()
                 .HasOne(p => p.User )
-                .WithMany(b => b.Posts)
-                .HasForeignKey(b => b.UserId);  
+                .WithMany(u => u.Posts)
+                .HasForeignKey(u => u.Id);  
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Blog)
+                .WithMany(b => b.Users)
+                .HasForeignKey(u => u.Id);
                 
                
         }
