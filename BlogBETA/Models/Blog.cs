@@ -5,7 +5,9 @@
         public int? Id { get; set; }
         public string? Name { get; set; }
         public string? Discription { get; set; }
-        public virtual List<Post>? Posts { get; set; }
-        public virtual ICollection<User>? Users { get; set; }
+        public virtual User? Owner { get; set; }
+        public string? OwnerId { get; set; }
+        public virtual ICollection<Post>? Posts { get; set; }
+
     }
 }

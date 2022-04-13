@@ -23,18 +23,12 @@ namespace BlogBETA.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Blog>()
                 .HasMany(b => b.Posts)
-                .WithOne(p => p.Owner)
-                .HasForeignKey(b => b.OwnerId);
+                .WithOne(p => p.Blog)
+                .HasForeignKey(p => p.BlogId);
             modelBuilder.Entity<Post>()
-                .HasOne(p => p.User )
+                .HasOne(p => p.Owner )
                 .WithMany(u => u.Posts)
-                .HasForeignKey(u => u.Id);  
-            modelBuilder.Entity<User>()
-                .HasOne(u => u.Blog)
-                .WithMany(b => b.Users)
-                .HasForeignKey(u => u.Id);
-                
-               
+                .HasForeignKey(u => u.OwnerId);  
         }
 
     }
